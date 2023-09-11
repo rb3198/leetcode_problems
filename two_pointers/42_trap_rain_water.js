@@ -1,4 +1,9 @@
 /**
+ * Intuition:
+ *
+ * While traveling each block, keep a track of the biggest block to its left, and the biggest block to its right.
+ *
+ *
  * https://leetcode.com/problems/trapping-rain-water/
  * @param {number[]} heights
  * @return {number}
@@ -12,6 +17,7 @@ const trap = (heights) => {
   let res = 0;
   while (l < r) {
     if (heights[l] <= heights[r]) {
+      // current block is constrained by the height of the blocks to its left
       if (heights[l] >= leftMax) {
         leftMax = heights[l];
       } else {
@@ -19,6 +25,7 @@ const trap = (heights) => {
       }
       l++;
     } else {
+      // current block is constrained by the height of the blocks to its right
       if (heights[r] >= rightMax) {
         rightMax = heights[r];
       } else {
